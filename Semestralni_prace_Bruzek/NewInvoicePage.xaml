@@ -1,0 +1,59 @@
+﻿<Page x:Class="Semestralka_Bruzek.NewInvoicePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Title="New Invoice Page">
+
+    <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid Margin="20">
+            <StackPanel>
+                <TextBlock x:Name="InvoiceText" FontWeight="Bold" FontSize="20" Margin="0 0 0 20" HorizontalAlignment="Center"/>
+
+                <Button Content="Přidat položku" Click="AddItem_Click" Margin="0 0 0 10" Width="150"/>
+                <Button x:Name="btnAddCustomer" Content="Přidat odběratele" Click="AddCustomer_Click" Margin="0 0 0 10" Width="150"/>
+
+                <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                    <Label Content="Bankovní účet:" Width="100"/>
+                    <ComboBox Name="cbBankAccounts"  Width="200"/>
+                </StackPanel>
+                <TextBlock Text="Informace o odběrateli" FontWeight="Bold" FontSize="16" Margin="0 20 0 10"/>
+                <StackPanel Name="CustomerInfoPanel" Margin="0 10 0 0">
+                    <TextBlock Name="txtCustomerICO" Text="IČO:" Margin="0 0 0 5"/>
+                    <TextBlock Name="txtCustomerDIC" Text="DIČ:" Margin="0 0 0 5"/>
+                    <TextBlock Name="txtCompanyName" Text="Název firmy:" Margin="0 0 0 5"/>
+                    <TextBlock Name="txtCustomerAddress" Text="Adresa:" Margin="0 0 0 5"/>
+                    <TextBlock Name="txtCustomerCountry" Text="Země:" Margin="0 0 0 5"/>
+                    <TextBlock Name="txtCustomerEmail" Text="Email:" Margin="0 0 0 5"/>
+                    <TextBlock Name="txtCustomerPhone" Text="Telefon:" Margin="0 0 0 5"/>
+                </StackPanel>
+                <TextBlock Text="Informace o dodavateli" FontWeight="Bold" FontSize="16" Margin="0 20 0 10"/>
+                <StackPanel Name="SupplierInfoPanel" Margin="0 10 0 0">
+                    <TextBlock Name="txtSupplierName" Text="Název dodavatele:" Margin="0 0 0 5"/>
+                    <TextBlock Name="txtSupplierICO" Text="IČO dodavatele:" Margin="0 0 0 5"/>
+                    <TextBlock Name="txtSupplierDIC" Text="DIČ dodavatele:" Margin="0 0 0 5"/>
+                    <TextBlock Name="txtSupplierCountry" Text="Země dodavatele:" Margin="0 0 0 5"/>
+                    <TextBlock Name="txtSupplierEmail" Text="Email dodavatele:" Margin="0 0 0 5"/>
+                    <TextBlock Name="txtSupplierIsVATPayer" Text="Je plátce DPH:" Margin="0 0 0 5"/>
+                </StackPanel>
+
+                <ListView x:Name="lvInvoiceItems" ItemsSource="{Binding invoiceItems}" Visibility="Hidden" Margin="0 20 0 10">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Název položky" DisplayMemberBinding="{Binding ItemName}"/>
+                            <GridViewColumn Header="Počet" DisplayMemberBinding="{Binding Quantity}"/>
+                            <GridViewColumn Header="Cena" DisplayMemberBinding="{Binding Price}"/>
+                            <GridViewColumn Header="Sazba DPH" DisplayMemberBinding="{Binding Tax}"/>
+                            <GridViewColumn Header="Cena s DPH" DisplayMemberBinding="{Binding Total}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+
+                <TextBlock Name="txtTotalPrice" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0 0 20 10" FontWeight="Bold" FontSize="16"/>
+
+                <Button Content="Uložit fakturu" Click="SaveInvoice_Click" Margin="0 10 0 0" Width="150"/>
+            </StackPanel>
+        </Grid>
+    </ScrollViewer>
+</Page>
