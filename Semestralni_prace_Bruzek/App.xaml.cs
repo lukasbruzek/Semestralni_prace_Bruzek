@@ -21,6 +21,30 @@ namespace Semestralka_Bruzek
             //DeleteInvoiceInfoTable();
             //DeleteBankInfoTable();
             //DeleteAllInvoiceItems();
+            //DeleteCompanyInfoTable();
+        }
+
+        private void DeleteCompanyInfoTable()
+        {
+            string connectionString = "Data Source=InvoiceDB.db;Version=3;";
+            string dropTableQuery = "DROP TABLE IF EXISTS CompanyInfo";
+
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SQLiteCommand command = new SQLiteCommand(dropTableQuery, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+                MessageBox.Show("CompanyInfo table deleted successfully.", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Error deleting CompanyInfo table: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
         private void CreateInvoiceItemsTable()
         {
