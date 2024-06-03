@@ -350,8 +350,8 @@ namespace Semestralka_Bruzek
 
                 string connectionString = "Data Source=InvoiceDB.db;Version=3;";
                 string updateInvoiceQuery = @"UPDATE Invoices SET BankID = @BankID, CustomerICO = @CustomerICO, CustomerDIC = @CustomerDIC, 
-                                   CustomerAddress = @CustomerAddress, CustomerCountry = @CustomerCountry, CustomerEmail = @CustomerEmail, 
-                                   CustomerPhone = @CustomerPhone, TotalPrice = @TotalPrice WHERE InvoiceID = @InvoiceID, CompanyName = @CompanyName";
+                   CustomerAddress = @CustomerAddress, CustomerCountry = @CustomerCountry, CustomerEmail = @CustomerEmail, 
+                   CustomerPhone = @CustomerPhone, TotalPrice = @TotalPrice, CompanyName = @CompanyName WHERE InvoiceID = @InvoiceID";
                 string deleteItemsQuery = @"DELETE FROM InvoiceItems WHERE InvoiceID = @InvoiceID";
                 string insertItemQuery = @"INSERT INTO InvoiceItems (InvoiceID, ItemName, Quantity, Price, Tax, Total) 
                                VALUES (@InvoiceID, @ItemName, @Quantity, @Price, @Tax, @Total)";

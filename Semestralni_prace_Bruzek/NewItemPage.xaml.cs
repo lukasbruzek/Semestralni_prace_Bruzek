@@ -117,5 +117,13 @@ namespace Semestralka_Bruzek
         {
             Window.GetWindow(this).Close();
         }
+        private void DeleteItem_Click(object sender, RoutedEventArgs e)
+        {
+            if (_editingItem != null)
+            {
+                _newInvoicePage.invoiceItems.Remove(_editingItem);
+                Window.GetWindow(this).Close();
+            }
+        }
     }
 }
