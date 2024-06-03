@@ -17,11 +17,41 @@ namespace Semestralka_Bruzek
 
             InitializeBankDatabase();
             CreateInvoicesTable();
+            CreateInvoiceItemsTable();
             //DeleteInvoiceInfoTable();
             //DeleteBankInfoTable();
             //DeleteAllInvoiceItems();
         }
+        private void CreateInvoiceItemsTable()
+        {
+            string connectionString = "Data Source=InvoiceDB.db;Version=3;";
+            string createTableQuery = @"CREATE TABLE IF NOT EXISTS InvoiceItems (
+        InvoiceItemID INTEGER PRIMARY KEY AUTOINCREMENT,
+        InvoiceID INTEGER,
+        ItemName TEXT,
+        Quantity INTEGER,
+        Price REAL,
+        Tax REAL,
+        Total REAL,
+        FOREIGN KEY (InvoiceID) REFERENCES Invoices(InvoiceID)
+    );";
 
+            try
+            {
+                using (SQLiteConnection connection = new SQLiteConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SQLiteCommand command = new SQLiteCommand(createTableQuery, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SQLiteException ex)
+            {
+                MessageBox.Show("Error creating InvoiceItems table: " + ex.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
         private void DeleteAllInvoiceItems()
         {
             string connectionString = "Data Source=InvoiceDB.db;Version=3;";

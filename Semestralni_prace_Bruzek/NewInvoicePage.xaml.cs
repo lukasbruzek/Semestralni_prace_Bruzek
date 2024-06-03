@@ -16,7 +16,7 @@ namespace Semestralka_Bruzek
         private Customer currentCustomer;
         private bool isEditingExistingInvoice;
         int InvoiceId;
-        bool isCompanyHere;
+        bool isCompanyHere = true;
 
         public NewInvoicePage(ObservableCollection<BankInfo> bankAccounts)
         {

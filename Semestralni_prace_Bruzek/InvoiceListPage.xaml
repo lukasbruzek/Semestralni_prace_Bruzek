@@ -5,7 +5,7 @@
 
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <Grid>
-            <ListView x:Name="lvInvoices">
+            <ListView x:Name="lvInvoices" Margin="0,10,0,0">
                 <ListView.View>
                     <GridView>
                         <GridViewColumn Header="Číslo faktury" DisplayMemberBinding="{Binding InvoiceID}" />

@@ -10,6 +10,8 @@ namespace Semestralka_Bruzek
         public MainWindow()
         {
             InitializeComponent();
+            InvoiceListPage invoiceListPage = new InvoiceListPage();
+            MainFrame.Navigate(invoiceListPage);
         }
 
 
